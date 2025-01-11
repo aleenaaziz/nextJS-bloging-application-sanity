@@ -1,6 +1,7 @@
 "use client"; // Mark this as a Client Component
 
 import Card from "./Card";
+import { PortableTextBlock } from '@portabletext/types'; // Import the correct type
 
 interface CardListProps {
   data: {
@@ -8,7 +9,7 @@ interface CardListProps {
       asset: { url: string };
     };
     title: string;
-    body: any; // Accept rich text objects
+    body: PortableTextBlock[]; // Use the specific type
   }[];
 }
 
@@ -20,7 +21,7 @@ const CardList: React.FC<CardListProps> = ({ data }) => {
           <Card
             imageSrc={val.mainImage ? val.mainImage.asset.url : null}
             title={val.title || "Untitled"}
-            description={val.body || "No description available."}
+            description={val.body}
           />
         </div>
       ))}

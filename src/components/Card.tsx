@@ -1,10 +1,11 @@
-import { PortableText } from "@portabletext/react";
-import React, { useState } from "react";
+import { PortableText, PortableTextBlock } from '@portabletext/react'; // Use the correct import
+import { useState } from 'react';
+
 
 interface CardProps {
   imageSrc: string | null;
   title: string;
-  description: any; // Accept rich text blocks
+  description: PortableTextBlock[];
 }
 
 const Card: React.FC<CardProps> = ({ imageSrc, title, description }) => {
@@ -14,8 +15,8 @@ const Card: React.FC<CardProps> = ({ imageSrc, title, description }) => {
     setShowFullContent((prev) => !prev);
   };
 
-  // Truncate rich text to the first block (can be adjusted for more lines)
-  const truncatedDescription = description.slice(0, 2); // Show first 2 blocks as preview
+  // Truncate rich text to the first block (adjust as needed)
+  const truncatedDescription = description.slice(0, 2);
 
   return (
     <div className="max-w-sm rounded overflow-hidden shadow-lg bg-white">
